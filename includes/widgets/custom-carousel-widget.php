@@ -242,8 +242,10 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $widget = $this->get_data();
+		$unique_id = $widget['id'];
         ?>
-        <div class="custom-carousel-widget">
+        <div id="custom-carousel-<?php echo $unique_id; ?>" class="custom-carousel-widget">
             <div class="slider-for">
                 <?php foreach( $settings[ 'slider' ] as $slide ) : ?>
                         <div class="slider-simple">
