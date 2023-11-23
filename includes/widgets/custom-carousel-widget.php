@@ -238,46 +238,6 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
         ?>
-        <style>
-        .slider-nav {
-            margin-top: -30px;
-            color: #ffffff;
-        }
-
-        .simple-nav {
-            max-width: 400px;
-            width: 100%;
-            padding: 40px;
-            border: 1px solid #AEF7FB;
-            opacity: 0.15;
-        }
-
-        .slick-current {
-            opacity: 1;
-        }
-
-        .slider-for .slider-simple {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider-for .slider-simple img {
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .slider-simple .slider-quote {
-            font-style: normal;
-            font-weight: 400;
-            font-size: 30px;
-            line-height: 120%;
-            max-width: 450px;
-            margin-right: 50px;
-            color: #ffffff;
-            margin-left: 50px;
-        }
-    </style>
         <div class="custom-carousel-widget">
             <div class="slider-for">
                 <?php foreach( $settings[ 'slider' ] as $slide ) : ?>
@@ -296,30 +256,7 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
             <?php endforeach; ?>
             </div>
         </div>
-        <script>
-        jQuery(document).ready(function(){
-            jQuery('.slider-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-                fade: true,
-                asNavFor: '.slider-nav',
-            });
-            jQuery('.slider-nav').slick({
-                slidesToShow: 4.3,
-                slidesToScroll: 1,
-                cssEase: 'linear',
-                asNavFor: '.slider-for',
-                dots: true,
-                arrows: true,
-                focusOnSelect: true,
-                centerMode: false,
-                infinite: true,
-                initialSlide: 1,
-            });
-        });
-
-        </script>
+   
         <?php
     }
 

@@ -27,7 +27,6 @@ if (! defined('ABSPATH') ) {
 
 function register_custom_carousel_control( $controls_manager )
 {
-
     include_once __DIR__ . '/includes/controls/custom-carousel-control.php';
 
     $controls_manager->register(new \Custom_Carousel_Control());
@@ -49,10 +48,12 @@ function register_list_widget( $widgets_manager )
 {
     wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js', array(), '3.6.4', true);
     wp_enqueue_script('slick-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), '1.8.1', true);
+    wp_enqueue_script('custom-carousel', plugin_dir_url(__FILE__) . 'includes/assets/js/custom-carousel.js', array('jquery'), '1.0.0', true);
 
     // Încărcare CSS pentru Slick Carousel
     wp_enqueue_style('slick-carousel-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
     wp_enqueue_style('slick-carousel-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
+    wp_enqueue_style('custom-carousel-css', plugin_dir_url(__FILE__) . 'includes/assets/css/custom-carousel.css');
 
     include_once __DIR__ . '/includes/widgets/custom-carousel-widget.php';
 
