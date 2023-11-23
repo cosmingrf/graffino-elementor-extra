@@ -1,5 +1,4 @@
 <?php
-namespace Graffino_Elementor_Extra;
 
 if (! defined('ABSPATH') ) {
     exit; // Exit if accessed directly.
@@ -12,6 +11,7 @@ if (! defined('ABSPATH') ) {
  *
  * @since 1.0.0
  */
+
 
 final class Plugin
 {
@@ -30,7 +30,7 @@ final class Plugin
      * @since 1.0.0
      * @var   string Minimum Elementor version required to run the addon.
      */
-    const MINIMUM_ELEMENTOR_VERSION = '3.16.0';
+    const MINIMUM_ELEMENTOR_VERSION = '3.14.0';
 
     /**
      * Minimum PHP Version
@@ -38,7 +38,7 @@ final class Plugin
      * @since 1.0.0
      * @var   string Minimum PHP version required to run the addon.
      */
-    const MINIMUM_PHP_VERSION = '7.4';
+    const MINIMUM_PHP_VERSION = '7.0';
 
     /**
      * Instance
@@ -212,8 +212,7 @@ final class Plugin
     {
 
         add_action('elementor/widgets/register', [ $this, 'register_widgets' ]);
-    
-
+        add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
     }
 
     /**
@@ -226,8 +225,24 @@ final class Plugin
      * @param \Elementor\Widgets_Manager $widgets_manager Elementor widgets manager.
      */
     public function register_widgets( $widgets_manager )
-    {
+    {   require_once (__DIR__ . '/widgets/custom-carousel-widget.php');
         $widgets_manager->register(new Custom_Carousel_Widget());
-        include_once __DIR__ . '/includes/widgets/custom-carousel-widget.php';
+    
     }
+
+    /**
+	 * Register Controls
+	 *
+	 * Load controls files and register new Elementor controls.
+	 *
+	 * Fired by `elementor/controls/register` action hook.
+	 *
+	 * @param \Elementor\Controls_Manager $controls_manager Elementor controls manager.
+	 */
+	public function register_controls( $controls_manager ) {
+		require_once( __DIR__ . '/controls/custom-carousel-control.php' );
+		$controls_manager->register( new Custom_Carousel_Control() );
+	}
 }
+
+Plugin::instance();

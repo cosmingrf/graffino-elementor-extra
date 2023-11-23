@@ -12,6 +12,7 @@ if (! defined('ABSPATH') ) {
  * @since 1.0.0
  */
 
+
 class Custom_Carousel_Widget extends \Elementor\Widget_Base
 {
 
@@ -94,6 +95,9 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
         return [ 'Carousel', 'Custom', 'link' ];
     }
 
+
+
+   
     /**
      * Register oEmbed widget controls.
      *
@@ -222,6 +226,7 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+
 
     }
 

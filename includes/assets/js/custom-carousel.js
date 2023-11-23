@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+    console.log('emrge')
         jQuery(document).ready(function(){
             jQuery('.slider-for').slick({
                 slidesToShow: 1,
