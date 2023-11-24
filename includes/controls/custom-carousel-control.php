@@ -59,38 +59,50 @@ class Custom_Carousel_Control extends \Elementor\Base_Data_Control
     function content_template()
     {
         ?>
-    <#
-    if ( settings.slider.length ) {
-    #>
-        <div class="custom-carousel-widget">
-            <div class="slider-for">
-                <#
-                _.each( settings.slider, function( slide ) {
-                #>
-                    <div class="slider-simple">
-                        <img class="slider-image" src="{{ slide.slider_image.url }}">
-                        <div class="slider-quote">{{{ slide.slider_text }}}</div>
-                    </div>
-                <#
-                });
-                #>
+        <#
+            view.addRenderAttribute(
+            'custom_carousel_options',
+            [
+                'id'=>'custom-carousel-'. $this->get_id(),
+                'data-dots'=>$settings['dots'],
+                'data-navs'=>$settings['navs'],
+                'data-loop'=>$settings['loop'],
+                'data-slides'=>$settings['slides_to_show'],
+            ]
+        );
+        #>
+     <#
+        if ( settings.slider.length ) {
+        #>
+            <div class="custom-carousel-widget">
+                <div class="slider-for" {{{ view.getRenderAttributeString('custom_carousel_options')} }}}>
+                    <#
+                    _.each( settings.slider, function( slide ) {
+                    #>
+                        <div class="slider-simple">
+                            <img class="slider-image" src="{{ slide.slider_image.url }}">
+                            <div class="slider-quote">{{{ slide.slider_text }}}</div>
+                        </div>
+                    <#
+                    });
+                    #>
+                </div>
+                
+                <div class="slider-nav">
+                    <#
+                    _.each( settings.slider, function( slide ) {
+                    #>
+                        <div class="simple-nav">
+                            <div class="slider-quote">{{{ slide.navigation_text }}}</div>
+                        </div>
+                    <#
+                    });
+                    #>
+                </div>
             </div>
-            
-            <div class="slider-nav">
-                <#
-                _.each( settings.slider, function( slide ) {
-                #>
-                    <div class="simple-nav">
-                        <div class="slider-quote">{{{ slide.navigation_text }}}</div>
-                    </div>
-                <#
-                });
-                #>
-            </div>
-        </div>
-    <#
-    }
-    #>
+        <#
+        }
+        #>
         <?php
     }
 

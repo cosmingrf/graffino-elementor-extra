@@ -175,18 +175,6 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
             ]
         );
 
-          // show Loop
-        $this->add_control(
-            'loop',
-            [
-            'label' => __('Loop', 'custom-carousel-widget'),
-            'type' => \Elementor\Controls_Manager::SWITCHER,
-            'label_on' => __('Show', 'custom-carousel-widget'),
-            'label_off' => __('Hide', 'custom-carousel-widget'),
-            'return_value' => true,
-            'default' => false,
-            ]
-        );
 
         // show Dots
         $this->add_control(
@@ -197,7 +185,7 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
             'label_on' => __('Show', 'custom-carousel-widget'),
             'label_off' => __('Hide', 'custom-carousel-widget'),
             'return_value' => true,
-            'default' => false,
+            'default' => true,
             ]
         );
 
@@ -214,17 +202,30 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
             ]
         );
 
-        // Margin
+        // Infinite Loop
         $this->add_control(
-            'margin',
+            'loop',
             [
-            'label' => __('Margin', 'custom-carousel-widget'),
-            'type' => \Elementor\Controls_Manager::NUMBER,
-            'default' => 10,
-            'placeholder' => __('Enter the margin between to slides', 'custom-carousel-widget'),
+            'label' => __('Infinite Loop', 'custom-carousel-widget'),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+            'label_on' => __('Yes', 'custom-carousel-widget'),
+            'label_off' => __('No', 'custom-carousel-widget'),
+            'return_value' => true,
+            'default' => true,
             ]
         );
 
+
+           // Slide to show
+        $this->add_control(
+            'slides_to_show',
+            [
+                'label' => __( 'Slides to show', 'custom-carousel-widget' ),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 5,
+                'placeholder' => __( 'Enter the number of slides to be visible.', 'custom-carousel-widget' ),
+            ]
+        );
         $this->end_controls_section();
 
 
@@ -242,11 +243,23 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        $widget = $this->get_data();
-		$unique_id = $widget['id'];
+        $this->add_render_attribute(
+            'custom_carousel_options',
+
+            [
+                'id'=>'custom-carousel-'. $this->get_id(),
+                'data-dots'=>$settings['dots'],
+                'data-navs'=>$settings['navs'],
+                'data-loop'=>$settings['loop'],
+                'data-slides'=>$settings['slides_to_show'],
+            ]
+    
+        );
+
+  
         ?>
-        <div id="custom-carousel-<?php echo $unique_id; ?>" class="custom-carousel-widget">
-            <div class="slider-for">
+        <div class="custom-carousel-widget">
+            <div class="slider-for" <?php echo $this->get_render_attribute_string( 'custom_carousel_options' ); ?>>
                 <?php foreach( $settings[ 'slider' ] as $slide ) : ?>
                         <div class="slider-simple">
                             <img class="slider-image" src="<?php echo esc_url($slide[ 'slider_image' ][ 'url' ]); ?>" alt="<?php esc_attr_e($slide[ 'slider_text' ]); ?>">

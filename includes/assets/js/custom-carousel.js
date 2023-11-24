@@ -1,26 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('emrge')
-        jQuery(document).ready(function(){
-            jQuery('.slider-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-                fade: true,
-                asNavFor: '.slider-nav',
-            });
-            jQuery('.slider-nav').slick({
-                slidesToShow: 4.3,
-                slidesToScroll: 1,
-                cssEase: 'linear',
-                asNavFor: '.slider-for',
-                dots: true,
-                arrows: true,
-                focusOnSelect: true,
-                centerMode: false,
-                infinite: true,
-                initialSlide: 1,
-            });
+/**
+ * Custom Carousel
+ * Author: Graffino (http://www.graffino.com)
+ */
+
+(function ($) {
+    "use strict";
+
+    /**
+     * Custom Carousel
+     */
+    
+    var CustomCarousel = function ($scope,$) {
+        var $_this = $scope.find('.slider-for');
+        var $currentID = '#' + $_this.attr('id'),
+            $dots = $_this.data('dots'),
+            $navs = $_this.data('navs'),
+            $loop = $_this.data('loop'),
+            $slidesToShow = $_this.data('slides');
+
+        $_this.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.slider-nav',
+            dots: false,
         });
 
+        $('.slider-nav').slick({
+            slidesToShow: $slidesToShow,
+            slidesToScroll: 1,
+            cssEase: 'linear',
+            asNavFor: '.slider-for',
+            dots: $dots,
+            arrows: $navs,
+            focusOnSelect: true,
+            centerMode: false,
+            infinite:  $loop,
+            initialSlide: 1,
+        });
+    };
 
-});
+    $(window).on('elementor/frontend/init', function () {
+        elementorFrontend.hooks.addAction('frontend/element_ready/custom-carousel-widget.default', CustomCarousel);
+    });
+})(jQuery);
