@@ -44,7 +44,6 @@ class Custom_Carousel_Control extends \Elementor\Base_Data_Control
      * @access protected
      * @return array Control default settings.
      */
-   
 
     /**
      * Render emoji one area control output in the editor.
@@ -71,7 +70,7 @@ class Custom_Carousel_Control extends \Elementor\Base_Data_Control
             ]
         );
         #>
-     <#
+        <#
         if ( settings.slider.length ) {
         #>
             <div class="custom-carousel-widget">
