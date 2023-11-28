@@ -5,7 +5,6 @@ if (! defined('ABSPATH') ) {
 }
 
 
-
 final class Plugin
 {
 

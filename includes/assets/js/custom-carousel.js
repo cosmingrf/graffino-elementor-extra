@@ -16,7 +16,8 @@
             $dots = $_this.data('dots'),
             $navs = $_this.data('navs'),
             $loop = $_this.data('loop'),
-            $slidesToShow = $_this.data('slides');
+            $slidesToShow = $_this.data('slides-desktop'),
+            $slidesToShowMobile = $_this.data('slides-mobile');
 
         $_this.slick({
             slidesToShow: 1,
@@ -38,6 +39,29 @@
             centerMode: false,
             infinite:  $loop,
             initialSlide: 1,
+            responsive: [
+            {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+            }
+            },   
+            {
+            breakpoint: 767,
+            settings: {
+                slidesToShow: $slidesToShowMobile,
+                slidesToScroll: 1,
+            }
+            },
+            {
+            breakpoint: 412,
+            settings: {
+                slidesToShow: $slidesToShowMobile,
+                slidesToScroll: 1,
+            }
+            }
+        ]
         });
     };
 
