@@ -202,6 +202,15 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
                 'placeholder' => __( 'Enter the number of slides to be visible.', 'custom-carousel-widget' ),
             ]
         );
+          $this->add_control(
+            'slides_to_show_desktop',
+            [
+                'label' => __( 'Slides to show desktop', 'custom-carousel-widget' ),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 1,
+                'placeholder' => __( 'Enter the number of slides to be visible.', 'custom-carousel-widget' ),
+            ]
+        );
         $this->end_controls_section();
 
 
@@ -432,7 +441,7 @@ class Custom_Carousel_Widget extends \Elementor\Widget_Base
                 <?php foreach( $settings[ 'slider' ] as $slide ) : ?>
                         <div class="slider-simple">
                             <img class="slider-image" src="<?php echo esc_url($slide[ 'slider_image' ][ 'url' ]); ?>" alt="<?php esc_attr_e($slide[ 'slider_text' ]); ?>">
-                            <div class="slider-quote"><?php echo $slide[ 'slider_text' ]; ?></div>
+                            <div class="slider-quote slider-quote-sign"><?php echo $slide[ 'slider_text' ]; ?></div>
                         </div>
                 <?php endforeach; ?>
             </div>

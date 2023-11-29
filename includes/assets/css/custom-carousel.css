@@ -3,10 +3,9 @@
  * Author: Graffino (http://www.graffino.com)
  */
 
-        .slider-nav {
-            color: #ffffff;
+        .custom-carousel-widget{
+         overflow: hidden;   
         }
-
         .simple-nav {
             width: 100%;
             opacity: 0.15;
@@ -20,4 +19,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .slider-simple .slider-quote{
+            position:relative;  
+        }
+
+        .slider-simple .slider-quote-sign::after{
+            content:'';
+            position:absolute;
+            background-image: url("../images/quote.svg");
+            background-repeat: no-repeat;
+            width: 56px;
+            height:40px;
+            top:0;
+        }
+        
+        @media screen and (max-width: 767px) {
+            .slider-for .slider-simple {
+            flex-direction:column-reverse;
+            }
         }
